@@ -1,18 +1,18 @@
-TARGET = hola
+TARGET = index
 CFLAGS = -Wall -Wextra -pedantic
 
-all: $(TARGET)
+all: $(TARGET).out run clean
 
-$(TARGET): $(TARGET).o
-	gcc $(CFLAGS) $(TARGET).o -o $(TARGET)
+$(TARGET).out: $(TARGET).o
+	gcc $(CFLAGS) $(TARGET).o -o $(TARGET).out
 
 $(TARGET).o: $(TARGET).c
 	gcc $(CFLAGS) -c $(TARGET).c -o $(TARGET).o
 
 run:
-	./$(TARGET)
+	./$(TARGET).out
 
 clean:
-	rm *.o $(TARGET)
+	rm *.o $(TARGET).out
 
 .PHONY: all clean run

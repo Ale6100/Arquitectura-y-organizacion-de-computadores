@@ -1,7 +1,7 @@
-TARGET = hola
+TARGET = index
 CFLAGS = -Wall -Wextra -pedantic
 
-all: $(TARGET)
+all: $(TARGET) run
 
 $(TARGET): $(TARGET).o
 	gcc $(CFLAGS) $(TARGET).o -o $(TARGET)
