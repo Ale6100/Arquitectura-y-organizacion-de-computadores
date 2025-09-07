@@ -1,18 +1,26 @@
 TARGET = index
-CFLAGS = -Wall -Wextra -pedantic
+CFLAGS = -Wall -Wextra -pedantic -g
 
-all: $(TARGET) run
+all: $(TARGET).out run
 
-$(TARGET): $(TARGET).o
-	gcc $(CFLAGS) $(TARGET).o -o $(TARGET)
+val: $(TARGET).out debug
+
+gdb:
+	gdb $(TARGET).out
+
+$(TARGET).out: $(TARGET).o
+	gcc $(CFLAGS) $(TARGET).o -o $(TARGET).out
 
 $(TARGET).o: $(TARGET).c
 	gcc $(CFLAGS) -c $(TARGET).c -o $(TARGET).o
 
 run:
-	./$(TARGET)
+	./$(TARGET).out
+
+debug:
+	valgrind ./$(TARGET).out
 
 clean:
-	rm *.o $(TARGET)
+	rm *.o *.out
 
-.PHONY: all clean run
+.PHONY: all clean run val debug gdb
